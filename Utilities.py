@@ -127,7 +127,7 @@ def GetTruncatedScenario(path, wantedDistanceWithin):
 
 #-------------------plotting-------------------------
 def DrawIntersectionFromPath(path, wantedDistanceWithin):
-    zoomFactor = 50
+    zoomFactor = 40
     dfA, dfB = GetTruncatedScenario(path, wantedDistanceWithin)
 
     plt.plot(dfA['HeadPosXA'], dfA['HeadPosZA'], label="Car A", color='red')
@@ -139,6 +139,15 @@ def DrawIntersectionFromPath(path, wantedDistanceWithin):
     plt.plot([wantedDistanceWithin, wantedDistanceWithin], [wantedDistanceWithin, -wantedDistanceWithin], color='black')
     plt.plot([wantedDistanceWithin, -wantedDistanceWithin], [-wantedDistanceWithin, -wantedDistanceWithin],
              color='black')
+
+    # Define the number of ticks you want to see on the x and y axes
+    ticks_x = np.linspace(-zoomFactor, zoomFactor, num=40, dtype=int)
+    ticks_y = np.linspace(-zoomFactor, zoomFactor, num=40, dtype=int)
+
+    plt.xticks(ticks_x, fontsize=5)  
+    plt.yticks(ticks_y, fontsize=5)
+
+    plt.grid(True)  # Ensure that the grid is on
 
     plt.xlim([-zoomFactor, zoomFactor])
     plt.ylim([-zoomFactor, zoomFactor])
